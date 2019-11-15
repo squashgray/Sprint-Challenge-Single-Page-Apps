@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import SearchForm from "./SearchForm";
 
 const List = styled.section`
   margin: 0 auto;
@@ -48,16 +49,19 @@ export default function CharacterList() {
   }, []);
 
   return (
-    <List className="character-list">
-      {character.map(data => (
-        <Person key={data.id}>
-          <Image src={data.image} alt="character portrait" />
-          <Name>{data.name}</Name>
-          <Info> {data.species}</Info>
-          <Info> {data.gender}</Info>
-          <Info> {data.status}</Info>
-        </Person>
-      ))}
-    </List>
+    <div>
+      <SearchForm character={character} />
+      <List className="character-list">
+        {character.map(data => (
+          <Person key={data.id}>
+            <Image src={data.image} alt="character portrait" />
+            <Name>{data.name}</Name>
+            <Info> {data.species}</Info>
+            <Info> {data.gender}</Info>
+            <Info> {data.status}</Info>
+          </Person>
+        ))}
+      </List>
+    </div>
   );
 }
